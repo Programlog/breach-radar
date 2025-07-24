@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?  // Optional for now, can add auth later
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Relationships
+  breaches     Breach[]
+  
+  @@map("users")
+}
+
+model Breach {
+  id          String   @id @default(cuid())
+  email       String
+  breachName  String
+  domain      String?
+  breachDate  DateTime?
+  addedDate   DateTime @default(now())
+  dataClasses String[] // Array of compromised data types
+  description String?
+  isVerified  Boolean  @default(false)
+  pwnCount    Int?     // Number of pwned accounts
+  
+  // Relationships
+  user        User     @relation(fields: [email], references: [email])
+  
+  @@map("breaches")
+  @@unique([email, breachName]) // Prevent duplicate breach records
+}
+
+model BreachCheck {
+  id        String   @id @default(cuid())
+  email     String
+  checkedAt DateTime @default(now())
+  newBreaches Int    @default(0)
+  
+  @@map("breach_checks")
+} 
