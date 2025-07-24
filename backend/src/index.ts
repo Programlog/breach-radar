@@ -15,7 +15,7 @@ import breachRoutes from './routes/breaches';
 import dashboardRoutes from './routes/dashboard';
 
 const app: Express = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Security middleware
 app.use(helmet({
@@ -78,21 +78,16 @@ const server = app.listen(PORT, () => {
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
 
-// Graceful shutdown
-process.on('SIGTERM', async () => {
-  console.log('SIGTERM received, shutting down gracefully');
-  server.close(() => {
-    prisma.$disconnect();
+function handleShutdown(signal: string) {
+  console.log(`${signal} received, shutting down gracefully.`);
+  server.close(async () => {
+    await prisma.$disconnect();
     process.exit(0);
   });
-});
+}
 
-process.on('SIGINT', async () => {
-  console.log('SIGINT received, shutting down gracefully');
-  server.close(() => {
-    prisma.$disconnect();
-    process.exit(0);
-  });
-});
+// Graceful shutdown
+process.on('SIGTERM', () => handleShutdown('SIGTERM'));
+process.on('SIGINT', () => handleShutdown('SIGINT'));
 
 export default app; 

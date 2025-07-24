@@ -4,9 +4,9 @@
   "description": "Secure web app for checking email breach history",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\"",
+    "dev": "concurrently --kill-others \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\"",
     "build": "pnpm --filter backend build && pnpm --filter frontend build",
-    "start": "pnpm --filter backend start",
+    "start": "concurrently --kill-others \"pnpm --filter backend start\" \"pnpm --filter frontend preview\"",
     "install:all": "pnpm install && pnpm --filter backend install && pnpm --filter frontend install"
   },
   "keywords": ["cybersecurity", "breach-detection", "privacy"],
