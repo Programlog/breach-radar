@@ -81,7 +81,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const storedToken = localStorage.getItem('auth-token');
       if (storedToken) {
         try {
-          const response = await axios.get('/api/auth/verify');
+          const response = await axios.get('/api/auth/verify', {
+            headers: {
+              Authorization: `Bearer ${storedToken}`,
+            },
+          });
           if (response.data.valid) {
             setUser(response.data.user);
             setToken(storedToken);

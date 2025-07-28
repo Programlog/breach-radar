@@ -41,7 +41,7 @@ class HibpService {
         {
           headers: {
             'hibp-api-key': this.apiKey,
-            'User-Agent': 'BreachRadar-App',
+            'User-Agent': 'Breach-Radar-VK',
           },
           params: {
             truncateResponse: false,
