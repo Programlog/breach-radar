@@ -9,6 +9,13 @@ interface AuthRequest extends Request {
   };
 }
 
+interface JwtResponse {
+  userId: string;
+  email?: string;
+  iat?: number; // Issued At JWT
+  exp?: number; // Expiration Time JWT
+}
+
 // Middleware to authenticate JWT tokens
 export async function authenticateToken(req: AuthRequest, res: Response, next: NextFunction) {
   try {
@@ -27,7 +34,7 @@ export async function authenticateToken(req: AuthRequest, res: Response, next: N
       return res.status(500).json({ error: 'Server config error' });
     }
 
-    const decoded = jwt.verify(token, secret) as any;
+    const decoded = jwt.verify(token, secret) as JwtResponse;
 
     // Verify user exists
     const user = await prisma.user.findUnique({
@@ -72,7 +79,7 @@ export async function optionalAuth(req: AuthRequest, res: Response, next: NextFu
         return next();
       }
 
-      const decoded = jwt.verify(token, secret) as any;
+      const decoded = jwt.verify(token, secret) as JwtResponse;
 
       const user = await prisma.user.findUnique({
         where: { id: decoded.userId },
