@@ -60,8 +60,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const responseInterceptorId = axios.interceptors.response.use(
       (response) => response,
       (error) => {
-        if (error.response?.status === 401) {
-          // Token is invalid or expired
+        if (error.response?.status === 401 && token && !loading) {
           logout();
           toast.error('Session expired. Please login again.');
         }
