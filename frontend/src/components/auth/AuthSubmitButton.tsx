@@ -11,7 +11,9 @@ function AuthSubmitButton({ loading, text, loadingText }: AuthSubmitButtonProps)
     <button
       type="submit"
       disabled={loading}
-      className="w-full btn btn-primary py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full flex justify-center items-center py-3 px-4 bg-primary-600 text-white font-semibold rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+      aria-live="polite"
+      aria-busy={loading}
     >
       {loading ? (
         <div className="flex items-center justify-center space-x-2">

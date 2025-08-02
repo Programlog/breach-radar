@@ -9,7 +9,7 @@ interface AuthHeaderProps {
 function AuthHeader({ title, subtitle }: AuthHeaderProps) {
   return (
     <div className="text-center">
-      <Link to="/" className="flex items-center justify-center space-x-2 mb-6">
+      <Link to="/" className="flex items-center justify-center space-x-2 mb-6" aria-label="Go to homepage">
         <Shield className="h-10 w-10 text-primary-600" />
         <span className="text-2xl font-bold text-gray-900">Breach Radar</span>
       </Link>
@@ -17,6 +17,6 @@ function AuthHeader({ title, subtitle }: AuthHeaderProps) {
       <p className="mt-2 text-sm text-gray-600">{subtitle}</p>
     </div>
   );
-};
+}
 
 export default AuthHeader;

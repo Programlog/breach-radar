@@ -72,7 +72,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       axios.interceptors.request.eject(requestInterceptorId);
       axios.interceptors.response.eject(responseInterceptorId);
     };
-  }, [token, logout]);
+  }, [token, logout, loading]);
 
   // Check for existing auth on mount
   useEffect(() => {
