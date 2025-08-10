@@ -24,17 +24,17 @@ function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ol className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div className="text-center" key={step.title}>
+            <li className="text-center" key={step.title}>
               <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-lg">
                 {index + 1}
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
               <p className="text-gray-600">{step.description}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

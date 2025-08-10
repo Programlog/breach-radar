@@ -37,6 +37,6 @@ function Cta() {
       </div>
     </section>
   );
-};
+}
 
 export default Cta;

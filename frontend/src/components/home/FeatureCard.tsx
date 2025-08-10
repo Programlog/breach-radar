@@ -16,6 +16,6 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
       <p className="text-gray-600">{description}</p>
     </div>
   );
-};
+}
 
 export default FeatureCard;
