@@ -28,7 +28,12 @@ export default function Dashboard() {
       const response = await axios.get('/api/dashboard');
       setData(response.data);
     } catch (error: any) {
-      console.error('Dashboard error:', error);
+      console.error('Dashboard error:', {
+        message: error.message,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data
+      });
       if (error.response?.status === 403) {
         toast.error('Access denied. Please check your permissions.');
       } else if (error.response?.status >= 500) {
@@ -56,7 +61,12 @@ export default function Dashboard() {
       toast.success('Breach check completed');
       await fetchDashboardData();
     } catch (error: any) {
-      console.error('Breach check error:', error);
+      console.error('Breach check error:', {
+        message: error.message,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data
+      });
       toast.error('Failed to run breach check');
     } finally {
       setLoading(false);

@@ -1,6 +1,6 @@
 import { AlertTriangle, CheckCircle, BarChart3, Search } from 'lucide-react';
 import SummaryCard from './SummaryCard';
-import { BreachSummary } from '../../types/dashboard';
+import { type BreachSummary } from '../../types/dashboard';
 
 export default function SummaryCards({ summary }: {summary: BreachSummary}) {
     return (
