@@ -14,6 +14,7 @@ export default function AuthSection() {
             <span className="text-sm text-gray-700">{user.email}</span>
           </div>
           <button
+            type="button"
             onClick={logout}
             className="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 transition-colors"
           >
