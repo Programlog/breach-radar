@@ -1,7 +1,7 @@
 import Welcome from '../components/home/Welcome';
 import Features from '../components/home/Features';
 import HowItWorks from '../components/home/HowItWorks';
-import Cta from '../components/home/CTA';
+import Cta from '../components/home/Cta';
 
 function Home() {
   return (
